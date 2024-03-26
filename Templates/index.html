@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <!-- Title Page-->
+    <title>House Price Prediction</title>
+    <!--Main CSS-->
+    <link href="/static/style.css" rel="stylesheet" media="all">
+</head>
+<!-- <body style="background-image: url('/static/Designer.png')> -->
+   
+    
+    
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Details About House</h2>
+                    <form id="predictionForm" action="{{ url_for('predict')}}" method="POST" autocomplete="off">
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="location" class="input--style-1">
+                                    <option disabled selected>Select a location</option>
+                                    <script>
+                                        var locations =['1 Giri Nagar', '1 Ramamurthy Nagar', '1A Block Koramangala', '1Hanumanth Nagar', '1st Block HRBR Layout', '1st Phase JP Nagar', '2nd Block Hrbr Layout', '2nd Phase Judicial Layout', '2nd Stage Nagarbhavi', '3rd Block Banashankari', '3rd Block HBR Layout', '4 Bedroom Farm House in Bagalur', '4th Block Koramangala', '5th Block Hbr Layout', '5th Block Jayanagar', '5th Stage BEML Layout', '6th Phase JP Nagar', '6th block banashankari 3rd stage, 100 feet ORR', '9th Block Jayanagar', 'AGS Layout', 'AMS Layout', 'Abbigere', 'Akshayanagara East', 'Alur', 'Ambedkar Colony', 'Anantapura', 'Ananth Nagar', 'Andrahalli', 'Anjanapura', 'Anjappa Layout', 'Ashirvad Colony', 'Ashwathnagar', 'Avalahalli', 'B Narayanapura', 'BAGUR', 'BEML Layout', 'BEML Layout 5th stage', 'BSM Extension', 'BTM 1st Stage', 'Babusapalaya', 'Badavala Nagar', 'Banagiri Nagar', 'Banashankari Stage II', 'Banashankari Stage III', 'Banashankari Stage V', 'Banashankari Stage VI', 'Banaswadi P&T Layout', 'Banaswadi, ', 'Bannerghatta', 'Basapura', 'Basava Nagar', 'Basavanagara', 'Basaveshwara Nagar Yelahanka', 'Belathur', 'Belatur', 'Bendiganahalli', 'Benson Town', 'Bettahalsoor', 'Bharath Housing Society Layout', 'Bhuvaneshwari Nagar', 'Bidere Agarahara, Behind Safal market', 'Bileshivale', 'Binnamangala', 'Bommenahalli', 'Bommenahalli', 'Bommenahalli', 'Brigade Road', 'Byadarahalli', 'Byappanahalli', 'Byrasandra', 'Byrathi Village', 'Canara Bank Layout', 'Chamrajpet', 'Channasandra', 'Chelekare', 'Chikka Banaswadi', 'Chikkaballapur', 'Chikkasandra', 'Chinnapanahalli', 'Chinnapanna Halli', 'Chokkanahalli', 'Choodasandra', 'Chowdeshwari Layout', 'Coconut Garden', 'Cooke Town', 'Cox Town', 'Craig Park Layout', 'Cunningham Road', 'D Souza Layout', 'Daadys Gaarden Layout', 'Dairy Circle', 'Defence Layout', 'Devanahalli Int. Airport', 'Devanahalli Road', 'Devarabisanahalli', 'Devasandra Extension', 'Dinnur', 'Divya Unnathi Layout', 'Dodda Kempaiah Layout', 'Doddakallasandra', 'Doddakannelli', 'Doddanekundi', 'Dwarka Nagar', 'ECC Road, Whitefield', 'Ejipura', 'Electronic City Phase II', 'Electronic City Phase II', 'Ferrar Nagar', 'Frazer Town', 'GB Palya', 'GKW Layout', 'GM Palaya', 'Garden Layout', 'Gaurava Nagar', 'Gollahalli', 'Gopal Reddy Layout', 'Gopalkrishna Nagar', 'Green Garden Layout', 'Green Glen Layout', 'Green Woods Layout', 'Grihalakshmi Layout', 'Gubbalala', 'HBR Layout', 'HBR Layout', 'HMT Layout', 'HOSUR MAIN ROAD', 'Hallehalli', 'Hanumanth Nagar', 'Hegde Nagar', 'Hennagara', 'Hennur Busstop', 'Hessarghatta', 'Hiremath Layout', 'Hongasandra', 'Hoodi Circle, ITPL Main Road, Whitefield', 'Horamavu Banaswadi', 'Hosahalli', 'Hosakerehalli', 'Hosakerehalli Layout', 'Hunasamaranahalli', 'Huskur', 'ITI Layout', 'ITPL', 'IVC Road', 'Iblur Village', 'Iggalur', 'Immadihalli', 'Indira Nagar', 'Indiranagar HAL 2nd Stage', 'Jakkur Plantation', 'Jalahalli East', 'Jaya Mahal layout', 'Jaya Nagar East', 'Jayanti Nagar', 'Jeevan bima nagar', 'Jnanabharathi Layout', 'Judicial Layout', 'KR Layout', 'KSRTC Layout', 'Kacharakanahalli', 'Kadarenahalli', 'Kadugondanahalli', 'Kaikondrahalli', 'Kalasipalya', 'Kalkere', 'Kallumantapa', 'Kamakya Layout', 'Kannamangala', 'Kariyammana Agrahara', 'Karuna Nagar', 'Kathriguppe', 'Kattigenahalli', 'Kaverappa Layout', 'Kaveri Nagar', 'Kavika Layout', 'Kempapura', 'Kenchanehalli R R Nagar', 'Kengeri Satellite Town ( BDA SITE)', 'Kodathi', 'Kodbisanhalli', 'Kodichikkanahalli', 'Konappana Agrahara', 'Kudlu', 'Kullappa Colony', 'Kumara Park', 'Kumara Park West', 'Kumbena Agrahara', 'Laggere', 'Lakshmi Layout', 'Lalbagh Road', 'Laxmi Sagar Layout', 'Lingarajapuram', 'M.G Road', 'M.G Road', 'Mahaganapathy Nagar', 'Makali', 'Malimakanapura', 'Mango Garden Layout', 'Manjunath Nagar', 'Maragondanahalli', 'Marathi Layout', 'Marsur', 'Maruthi HBCS Layout', 'Maruthi Nagar', 'Mathikere Extension', 'Medi Agrahara', 'Medi Agrahara', 'Mullur', 'NGR Layout', 'NGR Layout', 'NRI Layout', 'Naganathapura', 'Nagappa Reddy Layout', 'Nagavarapalya', 'Nallurhalli', 'Nandi Durga Road', 'Narasapura', 'Narayana Nagar 1st Block', 'Narayanappa Garden', 'Neeladri Nagar', 'Nelamangala', 'Nelamangala', 'New Gurappana Palya', 'New Thippasandra', 'Outer Ring Road East', 'P Krishnappa Layout', 'P&T Colony', 'Pai Layout', 'Pai layout , Mahadevapura', 'Palanahalli', 'Parappana Agrahara', 'Poorna Pragna Layout', 'Poornapragna Housing Society Layout', 'Poornima Nagar', 'Prakruthi Nagar', 'Prithvi Layout', 'Puttanahalli', 'R.T. Nagar', 'RWF West Colony', 'Rachenahalli', 'Raghavendra Nagar', 'Rajagopala Nagar', 'Ramamurthy Nagar Extension', 'Ramanashree Enclave', 'Rayasandra', 'Richmond Road', 'Roopena Agrahara', 'Rukmaiah Layout', 'Rustam Bagh Layout', 'SBM Colony', 'Sadanand Nagar', 'Sadaramangala', 'Sadashiva Nagar', 'Sahakara Nagar', 'Sai Gardens', 'Sarakki Nagar', 'Sarjapur Road', 'Sathanur', 'Sathya Sai Layout', 'Sector 1 Bommasandra', 'Sector 1 HSR Layout', 'Sector 2 HSR Layout', 'Sector 3 HSR Layout', 'Sector 4 HSR Layout', 'Seegehalli', 'Seetharampalya', 'Shanthala Nagar', 'Shirdi Sai Layout', 'Shivaji Nagar', 'Shivanagar', 'Siddapura', 'Sidedahalli', 'Singapura Village', 'Singena Agrahara', 'Srinagar', 'Srinivasa Nagar', 'Subramanyanagar', 'Sulthangunta', 'Suraksha Nagar', 'T K Reddy Layout', 'T.C. Palya', 'Teachers Colony', 'Thanisandra', 'Thubarahalli', 'Thurahalli', 'Tindlu', 'Tumkur Road', 'V.V Puram', 'VGP Layout', 'Vadarpalya', 'Varthur', 'Varthur Road', 'Varthur Road', 'Vasanth nagar', 'Vasantha Vallabha Nagar', 'Vasanthapura', 'Veer Sandra', 'Veerannapalya', 'Venkatadri Layout', 'Vibhutipura Extension', 'Vibuthipura', 'Victoria Layout', 'Vignana Nagar', 'Vijinapura', 'Vinayaka Layout', 'Vinayaka Nagar', 'Vishwanatha Nagenahalli', 'Viswapriyanagar', 'Vittal Mallya Road', 'Vittal Nagar', 'Vittal Nagar', 'Weavers Colony', 'Williams Town', 'Wilson Garden', 'Yelachenahalli', 'Yelahanka New Town', 'begur Road', 'bommanahalli', 'frazertown', 'manyata park', 'near Ramanashree California resort', 'sapthagiri Layout']
+                                        var locationsDropdown = document.querySelector('select[name="location"]');
+                                        locations.forEach(function (location) {
+                                            var option = document.createElement('option');
+                                            option.value = location;
+                                            option.textContent = location;
+                                            locationsDropdown.appendChild(option);
+                                        });
+                                    </script>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="Enter a total sqft." name="sqft" id="sqftInput">
+                        </div>
+                        
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="area">
+                                    <option disabled="disabled" selected="selected">Area type</option>
+                                    <option value="Built-up Area">Built-up Area</option>
+                                    <option value="Carpet Area">Carpet Area</option>
+                                    <option value="Plot Area">Plot Area</option>
+                                    <option value="Super built-up Area">Super built-up Area</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="size">
+                                    <option disabled="disabled" selected="selected">Size BHK </option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="bath">
+                                    <option disabled="disabled" selected="selected">Bath</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="balcony">
+                                    <option disabled="disabled" selected="selected">Balcony</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="button" onclick="validateAndPredict()">Submit</button>
+                        </div>
+                        
+                    </form>
+                    <p id="validation" style="color:black; font-size: 24px;">{{Predict_score}}</p>
+
+                    <p id="validationError" style="color: rgb(249, 5, 5);"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=us-south&integrationID=b12fc8a3-ef56-4f2e-a659-91d74b485824&serviceInstanceID=6ae70922-58d8-4c67-8e15-974b1458b2f1"><h3 align="right">Chat Bot</h3></a>
+    </div>
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+    <!-- Main JS-->
+    <!--<script src="js/global.js"></script>-->
+    <script>
+        function validateAndPredict() {
+            var sqftInput = document.getElementById('sqftInput').value;
+            var sqft = parseFloat(sqftInput);
+            
+            if (isNaN(sqft)) {
+                document.getElementById('validationError').textContent = 'Please enter a valid number for total sqft.';
+                return;
+            }
+    
+            var areaType = document.querySelector('select[name="area"]').value;
+            if (areaType !== 'Built-up Area' && areaType !== 'Carpet Area' && areaType !== 'Plot Area' && areaType !== 'Super built-up Area') {
+                document.getElementById('validationError').textContent = 'Please select a valid area type.';
+                return;
+            }
+    
+            if (sqft <= 0) {
+                document.getElementById('validationError').textContent = 'Area value must be greater than 0.';
+                return;
+            }
+    
+            if (sqft < 100) {
+                document.getElementById('validationError').textContent = 'The  area must be at least 100 square feet for prediction.';
+                return;
+            }
+            
+            document.getElementById('validationError').textContent = '';
+            document.getElementById('predictionForm').submit();
+        }
+    </script>
+    
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
